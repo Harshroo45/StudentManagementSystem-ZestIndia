@@ -1,0 +1,6 @@
+@StudentManagementSystem_ZestIndia_HostAddress = http://localhost:5011
+
+GET {{StudentManagementSystem_ZestIndia_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
