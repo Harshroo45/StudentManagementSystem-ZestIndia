@@ -1,8 +1,7 @@
+using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi;
-using Microsoft.OpenApi.Models;
 using Serilog;
 using StudentManagementSystem_ZestIndia.Data;
 using StudentManagementSystem_ZestIndia.Helpers;
@@ -31,45 +30,45 @@ try
     // Add Serilog
     builder.Host.UseSerilog();
 
-    // Add services to the container
+    // Add services to container
     builder.Services.AddControllers();
 
+    // Swagger
     builder.Services.AddEndpointsApiExplorer();
-
-    // Configure Swagger with JWT
     builder.Services.AddSwaggerGen(options =>
     {
-        options.SwaggerDoc("v1", new OpenApiInfo
+        options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
         {
-            Title = "Student Management System API",
-            Version = "v1",
-            Description = "ASP.NET Core Web API for Student Management System"
+            Title = "StudentManagementSystem-ZestIndia",
+            Version = "v1"
         });
 
-        options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-        {
-            Name = "Authorization",
-            Type = SecuritySchemeType.Http,
-            Scheme = "bearer",
-            BearerFormat = "JWT",
-            In = ParameterLocation.Header,
-            Description = "Enter JWT Token like: Bearer your_token"
-        });
-
-        options.AddSecurityRequirement(new OpenApiSecurityRequirement
-        {
+        options.AddSecurityDefinition("Bearer",
+            new Microsoft.OpenApi.Models.OpenApiSecurityScheme
             {
-                new OpenApiSecurityScheme
+                Name = "Authorization",
+                Type = Microsoft.OpenApi.Models.SecuritySchemeType.Http,
+                Scheme = "bearer",
+                BearerFormat = "JWT",
+                In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+                Description = "Enter JWT Token"
+            });
+
+        options.AddSecurityRequirement(
+            new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
+            {
+            {
+                new Microsoft.OpenApi.Models.OpenApiSecurityScheme
                 {
-                    Reference = new OpenApiReference
+                    Reference = new Microsoft.OpenApi.Models.OpenApiReference
                     {
-                        Type = ReferenceType.SecurityScheme,
+                        Type = Microsoft.OpenApi.Models.ReferenceType.SecurityScheme,
                         Id = "Bearer"
                     }
                 },
                 Array.Empty<string>()
             }
-        });
+            });
     });
 
     // Configure DbContext
@@ -162,14 +161,7 @@ try
     {
         app.UseSwagger();
 
-        app.UseSwaggerUI(options =>
-        {
-            options.SwaggerEndpoint(
-                "/swagger/v1/swagger.json",
-                "Student Management System API v1");
-
-            options.RoutePrefix = "swagger";
-        });
+        app.UseSwaggerUI();
     }
 
     // Global Exception Middleware
