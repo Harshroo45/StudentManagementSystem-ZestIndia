@@ -389,14 +389,18 @@ Implemented:
 * Swagger Home Page
  <img width="1235" height="3551" alt="localhost_5011_swagger_index html (3)" src="https://github.com/user-attachments/assets/7719bdc6-d46c-4830-a908-e90bd9c61fb9" />
 
+
 * JWT Authorization
  <img width="1919" height="875" alt="Screenshot 2026-05-09 123419" src="https://github.com/user-attachments/assets/05804fa5-f34e-433d-a318-822fa8891c36" />
 
+
 * CRUD API Testing
- 
+ <img width="1235" height="13016" alt="localhost_5011_swagger_index html (4)" src="https://github.com/user-attachments/assets/a3194930-738a-4b52-9c4e-b43f173492ef" />
+
 
 * SQL Server Database
- 
+ <img width="1918" height="1017" alt="image" src="https://github.com/user-attachments/assets/58ba907c-7cee-4123-af64-71a19e3be414" />
+
 
 * Serilog Log File
  <img width="1918" height="1013" alt="image" src="https://github.com/user-attachments/assets/7d95e358-1f7a-49f7-aae1-7fd09447bad3" />
