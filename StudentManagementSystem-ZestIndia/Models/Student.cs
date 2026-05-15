@@ -2,9 +2,7 @@
 
 namespace StudentManagementSystem_ZestIndia.Models
 {
-    /// <summary>
-    /// Student model representing a student record in the database
-    /// </summary>
+
     public class Student
     {
         [Key]

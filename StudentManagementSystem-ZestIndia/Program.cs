@@ -12,7 +12,7 @@ using StudentManagementSystem_ZestIndia.Services.Implementations;
 using StudentManagementSystem_ZestIndia.Services.Interfaces;
 using System.Text;
 
-// Configure Serilog
+
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Information()
     .WriteTo.Console()
@@ -27,13 +27,13 @@ try
 {
     var builder = WebApplication.CreateBuilder(args);
 
-    // Add Serilog
+
     builder.Host.UseSerilog();
 
-    // Add services to container
+
     builder.Services.AddControllers();
 
-    // Swagger
+
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen(options =>
     {
@@ -71,12 +71,12 @@ try
             });
     });
 
-    // Configure DbContext
+
     builder.Services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlServer(
             builder.Configuration.GetConnectionString("DefaultConnection")));
 
-    // Configure JWT Authentication
+
     var jwtSettings = builder.Configuration.GetSection("JwtSettings");
 
     var secret = jwtSettings["Secret"];
@@ -124,16 +124,15 @@ try
 
     builder.Services.AddAuthorization();
 
-    // Register Repository Services
+
     builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 
-    // Register Business Services
+
     builder.Services.AddScoped<IStudentService, StudentService>();
 
-    // Register Helper Services
+
     builder.Services.AddScoped<IJwtTokenHelper, JwtTokenHelper>();
 
-    // Configure CORS
     builder.Services.AddCors(options =>
     {
         options.AddPolicy("AllowAll", policy =>
@@ -146,7 +145,7 @@ try
 
     var app = builder.Build();
 
-    // Apply migrations automatically
+
     using (var scope = app.Services.CreateScope())
     {
         var dbContext =
@@ -156,7 +155,7 @@ try
         dbContext.Database.Migrate();
     }
 
-    // Configure Swagger
+
     if (app.Environment.IsDevelopment())
     {
         app.UseSwagger();
@@ -164,14 +163,14 @@ try
         app.UseSwaggerUI();
     }
 
-    // Global Exception Middleware
+
     app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
 
     app.UseHttpsRedirection();
 
     app.UseCors("AllowAll");
 
-    // Authentication & Authorization
+
     app.UseAuthentication();
 
     app.UseAuthorization();
