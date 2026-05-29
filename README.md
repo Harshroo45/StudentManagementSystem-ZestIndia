@@ -1,8 +1,6 @@
-# Student Management System - Zest India Technical Assignment
+# Student Management System
 
 ## Project Overview
-
-This project is developed as part of the technical assessment for **Zest India IT Pvt. Ltd.**
 
 The application is a secure and scalable **ASP.NET Core Web API** built using a clean layered architecture. It demonstrates practical implementation of:
 
